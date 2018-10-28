@@ -1,0 +1,236 @@
+{
+  "info": {
+    "_postman_id": "5b43bda3-6093-4deb-9db4-9ac83079a783",
+    "name": "spring-boot-2-sample",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "get-all-users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5b8f062c-425a-4988-9a17-a2cfb094657e",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"response is ok\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:18080/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "18080",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get-user-by-id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "8d963a3c-7757-4af0-ad65-56980412d5ab",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"response is ok\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "http://localhost:18080/api/users/10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "18080",
+          "path": [
+            "api",
+            "users",
+            "10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-user",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "86fec435-a5ba-43d5-8dcd-02a5545214f6",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"response is ok\", function () {",
+              "    pm.response.to.have.status(201);",
+              "    var jsonData = JSON.parse(responseBody);",
+              "    postman.clearEnvironmentVariable(\"user_id\");",
+              "    postman.setEnvironmentVariable(\"user_id\", jsonData.id);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"name-{{$guid}}\",\n    \"email\": \"name-{{$guid}}@gmail.com\",\n    \"githubUsername\": \"ghuser-{{$guid}}\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:18080/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "18080",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update-user",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "74a5758a-467c-4e50-9a94-6d27e5b20e7e",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"response is ok\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"name-{{$guid}}\",\n    \"email\": \"name-{{$guid}}@gmail.com\",\n    \"githubUsername\": \"ghuser-{{$guid}}\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:18080/api/users/{{user_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "18080",
+          "path": [
+            "api",
+            "users",
+            "{{user_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete-user",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "cb74f0d3-8f4a-4df7-a7c3-d0a7621fd886",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"response is ok\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:18080/api/users/{{user_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "18080",
+          "path": [
+            "api",
+            "users",
+            "{{user_id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
